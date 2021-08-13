@@ -1,5 +1,4 @@
 import "./userList.css"
-import { DataGrid } from '@material-ui/data-grid';
 import {DeleteOutline} from "@material-ui/icons"
 import {userRows} from "../../dummyData";
 import {Link} from "react-router-dom";
@@ -7,11 +6,17 @@ import {useState} from "react";
 import DataTable from 'react-data-table-component';
 
 export default function UserList() {
+  
   const [data, setData]= useState(userRows);
-  const handleDelete=(id)=>{
-    setData(data.filter(item=>item.id !== id));
+  const handleDelete=(Id)=>{
+    setData(data.filter(item=>item.Id !== Id));
   }
   const columns = [
+    {
+      name: 'Id',
+      selector: 'Id',
+      sortable: true,
+    },
     {
       name: 'Name',
       selector: 'name',
@@ -31,6 +36,19 @@ export default function UserList() {
       name: 'DOB',
       selector: 'dob',
     },
+    {
+      cell: row => <><Link to={"/user/" + row.Id}>
+      <button className="userListEdit">Edit</button>
+    </Link>
+    <DeleteOutline
+      className="userListDelete"
+      onClick={() => handleDelete(row.Id)}
+    />
+    </>,
+      allowOverflow: true,
+      button: true,
+      width: '100px', // custom width for icon button
+    },
       ];
       
     
@@ -43,6 +61,7 @@ export default function UserList() {
         data={data}
         pagination
         highlightOnHover
+        selectableRows
       />
         </div>
     )
