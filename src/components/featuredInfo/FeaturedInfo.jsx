@@ -1,37 +1,60 @@
-import "./featuredInfo.css"
-import {ArrowDownward, ArrowUpward} from "@material-ui/icons"
+import "./featuredInfo.css";
+import React from "react";
+
 export default function FeaturedInfo() {
-    return (
-        <div className="featured">
-            <div className="featuredItem">
-                <span className="featuredTitle">Total Users</span>
-                <div className="featuredUserContainer">
-                    <span className="featuredUser">4,640</span>
-                    <span className="featuredUserRate">-11.4 <ArrowDownward className="featuredIcon negative"/></span>
-                </div>
-                   <span className="featuredSub">Compared to Last Month</span>
+  const [psychologists, setPsychologists] = React.useState(0);
+  const [patients, setPatients] = React.useState(0);
 
-            </div>
-            <div className="featuredItem">
-                <span className="featuredTitle">Psychologists</span>
-                <div className="featuredUserContainer">
-                    <span className="featuredUser">2,415</span>
-                    <span className="featuredUserRate">-1.4 <ArrowDownward className="featuredIcon negative"/></span>
-                </div>
-                   <span className="featuredSub">Compared to Last Month</span>
+  React.useEffect(() => {
+    const func = async () => {
+      let response = await fetch("http://localhost:8000/psychologists/number", {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+        },
+      });
 
-            </div>
-            <div className="featuredItem">
-                <span className="featuredTitle">Patients</span>
-                <div className="featuredUserContainer">
-                    <span className="featuredUser">2,225</span>
-                    <span className="featuredUserRate">+2.4 <ArrowUpward className="featuredIcon"/></span>
-                </div>
-                   <span className="featuredSub">Compared to Last Month</span>
+      if (response.ok && response.status === 200) {
+        const res = await response.text();
+        setPsychologists(Number(res));
+      }
 
-            </div>
+      response = fetch("http://localhost:8000/patients/number", {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+        },
+      });
 
-            
+      if (response.ok && response.status === 200) {
+        const res = await response.text();
+        setPatients(Number(res));
+      }
+    };
+
+    func();
+  }, [psychologists, patients]);
+
+  return (
+    <div className="featured">
+      <div className="featuredItem">
+        <span className="featuredTitle">Total Users</span>
+        <div className="featuredUserContainer">
+          <span className="featuredUser">{patients + psychologists}</span>
         </div>
-    )
+      </div>
+      <div className="featuredItem">
+        <span className="featuredTitle">Psychologists</span>
+        <div className="featuredUserContainer">
+          <span className="featuredUser">{psychologists}</span>
+        </div>
+      </div>
+      <div className="featuredItem">
+        <span className="featuredTitle">Patients</span>
+        <div className="featuredUserContainer">
+          <span className="featuredUser">{patients}</span>
+        </div>
+      </div>
+    </div>
+  );
 }

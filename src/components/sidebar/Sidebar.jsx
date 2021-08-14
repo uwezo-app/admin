@@ -19,16 +19,18 @@ export default function Sidebar() {
               <Timeline className="sideBarIcon" />
               Analytics
             </li>
-            <Link to="/users" className="link">
+            <Link to="/users/psychologists" className="link">
               <li className="sideBarListItem">
                 <PermIdentity className="sideBarIcon" />
                 Psychologists
               </li>
             </Link>
-            <li className="sideBarListItem">
-              <PermIdentity className="sideBarIcon" />
-              Patients
-            </li>
+            <Link to="/users/patients" className="link">
+              <li className="sideBarListItem">
+                <PermIdentity className="sideBarIcon" />
+                Patients
+              </li>
+            </Link>
           </ul>
         </div>
       </div>

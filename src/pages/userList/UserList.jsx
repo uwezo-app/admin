@@ -1,50 +1,77 @@
 import "./userList.css";
-import { DeleteOutline } from "@material-ui/icons";
+
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { DeleteOutline } from "@material-ui/icons";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import { green } from "@material-ui/core/colors";
 import DataTable from "react-data-table-component";
 
-import { userRows } from "../../dummyData";
+export default function UserList({ url }) {
+  const [psychologists, setPsychologists] = useState([]);
 
-export default function UserList() {
-  const [data, setData] = useState(userRows);
-  const handleDelete = (Id) => {
-    setData(data.filter((item) => item.Id !== Id));
+  React.useEffect(() => {
+    const func = async () => {
+      let response = await fetch(url, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (response.ok && response.status === 200) {
+        const res = await response.json();
+        setPsychologists(res);
+      } else {
+        console.log(response.statusText);
+      }
+    };
+
+    func();
+  }, [url]);
+
+  const handleDelete = (Email) => {
+    setPsychologists(psychologists.filter((item) => item.Email !== Email));
   };
+
   const columns = [
     {
-      name: "Id",
-      selector: "Id",
+      name: "ID",
+      selector: "ID",
       sortable: true,
     },
     {
-      name: "Name",
-      selector: "name",
+      name: "First Name",
+      selector: "FirstName",
       sortable: true,
     },
     {
-      name: "Phone",
-      selector: "phone",
+      name: "Last Name",
+      selector: "LastName",
       sortable: true,
     },
     {
       name: "Email",
-      selector: "email",
+      selector: "Email",
       sortable: true,
     },
     {
-      name: "DOB",
-      selector: "dob",
+      name: "Is Deleted",
+      selector: "IsDeleted",
+    },
+    {
+      name: "Is Verified",
+      selector: "IsVerified",
     },
     {
       cell: (row) => (
         <>
-          <Link to={"/user/" + row.Id}>
+          <Link to={"/user/" + row.Email}>
             <button className="userListEdit">Edit</button>
           </Link>
           <DeleteOutline
             className="userListDelete"
-            onClick={() => handleDelete(row.Id)}
+            onClick={() => handleDelete(row.Email)}
           />
         </>
       ),
@@ -56,14 +83,26 @@ export default function UserList() {
 
   return (
     <div className="userList">
-      <DataTable
-        title="Employees"
-        columns={columns}
-        data={data}
-        pagination
-        highlightOnHover
-        selectableRows
-      />
+      {!psychologists ? (
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          {!psychologists && <CircularProgress style={{ color: green[500] }} />}
+        </div>
+      ) : (
+        <DataTable
+          title="Current Psychologists"
+          columns={columns}
+          data={psychologists}
+          pagination
+          highlightOnHover
+          selectableRows
+        />
+      )}
     </div>
   );
 }
