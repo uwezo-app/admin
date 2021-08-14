@@ -1,10 +1,6 @@
 import "./sidebar.css";
-import {
-  LineStyle,
-  Timeline,
-  PermIdentity
-} from "@material-ui/icons";
-import {Link} from "react-router-dom"
+import { Home, Timeline, PermIdentity } from "@material-ui/icons";
+import { Link } from "react-router-dom";
 
 export default function Sidebar() {
   return (
@@ -13,30 +9,28 @@ export default function Sidebar() {
         <div className="sideBarMenu">
           <h3 className="sideBarTitle">Dashboard</h3>
           <ul className="sideBarList">
-          <Link to="/" className="link">
-            <li className="sidebarListItem active">
-              <LineStyle className="sidebarIcon" />
-              Home
-            </li>
+            <Link to="/" className="link">
+              <li className="sidebarListItem active">
+                <Home className="sidebarIcon" />
+                Home
+              </li>
             </Link>
             <li className="sideBarListItem">
               <Timeline className="sideBarIcon" />
               Analytics
             </li>
             <Link to="/users" className="link">
-            <li className="sideBarListItem">
+              <li className="sideBarListItem">
                 <PermIdentity className="sideBarIcon" />
                 Psychologists
               </li>
-              </Link>
-              <li className="sideBarListItem">
-                <PermIdentity className="sideBarIcon" />
-               Patients
-              </li>
+            </Link>
+            <li className="sideBarListItem">
+              <PermIdentity className="sideBarIcon" />
+              Patients
+            </li>
           </ul>
         </div>
-        
-        
       </div>
     </div>
   );
