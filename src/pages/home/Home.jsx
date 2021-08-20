@@ -5,6 +5,8 @@ import FeaturedInfo from "../../components/featuredInfo/FeaturedInfo";
 import Chart from "../../components/chart/Chart";
 import { userData } from "../../dummyData";
 import WidgetsSm from "../../components/widgetsSm/WidgetsSm";
+import Topbar from "../../components/topbar/Topbar";
+import SideBar from "../../components/sidebar/Sidebar"
 // import WidgetsLg from "../../components/widgetsLg/WidgetsLg";
 
 export default function Home() {
@@ -30,7 +32,9 @@ export default function Home() {
   }, [psychologists]);
 
   return (
+
     <div className="home">
+      
       <FeaturedInfo />
       <Chart
         data={userData}

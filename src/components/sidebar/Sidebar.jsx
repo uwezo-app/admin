@@ -9,16 +9,12 @@ export default function Sidebar() {
         <div className="sideBarMenu">
           <h3 className="sideBarTitle">Dashboard</h3>
           <ul className="sideBarList">
-            <Link to="/" className="link">
+            <Link to="/home" className="link">
               <li className="sidebarListItem active">
                 <Home className="sidebarIcon" />
                 Home
               </li>
             </Link>
-            <li className="sideBarListItem">
-              <Timeline className="sideBarIcon" />
-              Analytics
-            </li>
             <Link to="/users/psychologists" className="link">
               <li className="sideBarListItem">
                 <PermIdentity className="sideBarIcon" />

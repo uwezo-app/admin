@@ -1,0 +1,48 @@
+.button{
+    width: 300px;
+      border: none;
+      background-color: #12AD2B;
+      color: white;
+      padding: 10px 10px;
+      font-weight: 600;
+      border-radius: 10px;
+      margin-top: 30px;
+      cursor: pointer;
+      margin-left: 15%;
+}
+.form{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 50%;
+    position: absolute;
+}
+.formItem{
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-right: 20px;
+}
+.formItem > label {
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(151, 150, 150);
+  }
+  
+  .formItem> input {
+    height: 20px;
+    padding: 10px;
+    border: 1px solid gray;
+    border-radius: 5px;
+  }
+  .login-wrapper{
+    margin-left: 30%;
+    margin-top: 8%;
+  }
+  .title{
+      align-self: center;
+      color: #12AD2B;
+      margin-left: 13%;
+  }
