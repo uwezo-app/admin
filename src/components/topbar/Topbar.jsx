@@ -1,8 +1,14 @@
 import React from 'react'
 import "./topbar.css"
-import {NotificationsNone} from '@material-ui/icons'
+import {NotificationsNone, ExitToApp} from '@material-ui/icons'
+import { useHistory } from "react-router";
 
 export default function Topbar() {
+    const history=useHistory();
+    const handleClick=()=>{
+        history.push('/');
+      
+    }
     return (
         <div className="topbar">
             <div className="topbarWrapper">
@@ -10,12 +16,12 @@ export default function Topbar() {
                 <span className="logo">Uwezo Admin</span>
                 </div>
                 <div className="topRight">
-                    <div className ="topbarIconContainer">
-                        <NotificationsNone/>
-                        <span className="topIconBadge">2</span>
+              
+                   
+                    <div className ="topbarIconContainer" onClick={handleClick}>
+                  
+                    <ExitToApp/>
                     </div>
-    
-                    <img src="https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/1.jpg" alt="" className="topAvatar" />
                 </div>
             </div>
         </div>
