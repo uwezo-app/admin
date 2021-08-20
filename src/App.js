@@ -4,6 +4,7 @@ import Sidebar from "./components/sidebar/Sidebar";
 import Topbar from "./components/topbar/Topbar";
 import Home from "./pages/home/Home";
 import UserList from "./pages/userList/UserList";
+import PatientList from "./pages/patientList/PatientList";
 import Login from "./pages/login/Login";
 import User from "./pages/user/User";
 import { BrowserRouter as Router, Switch, Route,Redirect } from "react-router-dom";
@@ -28,7 +29,7 @@ function App(){
               <UserList url="http://localhost:8000/psychologists" />
             </Route>
             <Route path="/users/patients">
-              <UserList url="http://localhost:8000/patients" />
+              <PatientList url="http://localhost:8000/patients" />
             </Route>
             <Route path="/user/:userId">
               <User />
