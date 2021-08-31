@@ -13,7 +13,7 @@ export default function WidgetSm() {
   React.useEffect(() => {
     const func = async () => {
       let response = await fetch(
-        `http://localhost:8000/psychologists?order_by=created_at`,
+        `https://uwezo-app-323117.uc.r.appspot.com/psychologists?order_by=created_at`,
         {
           method: "GET",
           headers: {

@@ -7,24 +7,30 @@ export default function FeaturedInfo() {
 
   React.useEffect(() => {
     const func = async () => {
-      let response = await fetch("http://localhost:8000/psychologists/number", {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-        },
-      });
+      let response = await fetch(
+        "https://uwezo-app-323117.uc.r.appspot.com/psychologists/number",
+        {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+          },
+        }
+      );
 
       if (response.ok && response.status === 200) {
         const res = await response.text();
         setPsychologists(Number(res));
       }
 
-      response = fetch("http://localhost:8000/patients/number", {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-        },
-      });
+      response = fetch(
+        "https://uwezo-app-323117.uc.r.appspot.com/patients/number",
+        {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+          },
+        }
+      );
 
       if (response.ok && response.status === 200) {
         const res = await response.text();
